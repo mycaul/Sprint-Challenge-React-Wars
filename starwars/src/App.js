@@ -18,6 +18,7 @@ const App = (props) => {
     .then(response => {
       console.log(response.data.results)
       setCharacterData(response.data.results)
+      console.log(characterData)
     })
     .catch(err => {
       console.log(`Error Message: ${err}`)
@@ -29,7 +30,11 @@ const App = (props) => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      <Character/>
+      {characterData.map(character => {
+        return(
+          <Character key={character.id} name ={character.name} image={character.image} status = {character.status} species ={character.species} gender={character.gender} />
+        )
+      })}
     </div>
     
   );
